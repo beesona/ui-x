@@ -1,0 +1,99 @@
+.main{
+    position: absolute;
+    background-color: #0d0d0d;
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+}
+.title-1{
+    font-size: 2.2em;
+    font-weight: 700;
+    color: #e6e6e6;
+}
+.marginizer{
+    margin-top: 20px;
+}
+.select{
+    display: inline;
+}
+.select select {
+    color: #f15a24;
+    font-weight: 500;
+    background: rgba(0, 0, 0, 0);
+    border-width: 0px;
+    outline: none;
+}
+.select select:hover{
+    color: #FFF;
+}
+.select select option{
+    color: #f15a24;
+    background-color: #0d0d0d;
+    border-width: 0px;
+}
+.select select:hover option{
+    color: #f15a24;
+    background-color: #0d0d0d;
+    border-width: 0px;
+}
+option:hover,
+option:focus,
+option:active,
+option:checked {
+    background: rgba(0, 0, 0, 0);
+    outline: none;
+    border-width: 0px;
+    color: black;
+}
+.info{
+    color: #b3b3b3;
+}
+.search-textbox{
+    background: rgba(0, 0, 0, 0);
+    color: #e6e6e6;
+    border: 0px;
+    border-bottom: 1px solid #f15a24;
+    font-size: 2em;
+    width: 100%;
+}
+input:focus {
+    outline: none;
+}
+.results-table{
+    width: 100%;
+}
+.results-table thead{
+    background-color: #515151;
+    color: #b3b3b3;
+}
+th{
+    padding: 3px;
+    font-weight: 500;
+}
+td{
+    padding: 5px;
+    padding-left: 10px;
+}
+.results-table tbody{
+    background-color: #404040;
+}
+.result-name{
+    color: #29abe2;
+}
+.img-ico{
+    height: 20px;
+    margin-right: 3px;
+}
+a{
+    color: #29abe2;
+}
+a:hover{
+    color: #FFF;
+}
+a:visited{
+    text-decoration: none;
+    color: #29abe2;
+}
+.text-small{
+    font-size: .8em;
+}

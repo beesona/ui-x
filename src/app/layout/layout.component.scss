@@ -1,0 +1,8 @@
+@import '~src/sass/_mixins';
+
+@include themable(theme-dark, #515151, #777777, #F15A24, #00FFCB, #F2F2F2, #FFF);
+
+.layout-main{
+    padding: 0px;
+    margin: 0px;
+}

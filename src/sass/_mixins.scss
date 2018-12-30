@@ -1,0 +1,14 @@
+@mixin themable($theme-name, $main-bg, $hdr-bg, $color-primary, $color-secondary, $color-text-1, $color-text-2) {
+    .#{$theme-name}{
+        app-header{
+            .header{
+                background-color: $hdr-bg;
+                color: $color-text-1;
+            }
+        }
+        .main{
+            background-color: $main-bg;
+            color: $color-text-2;
+        }
+    }
+}

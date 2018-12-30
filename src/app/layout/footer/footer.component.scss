@@ -1,0 +1,26 @@
+.footer-main{
+    background-color: #f15a24;
+    color: #e6e6e6;
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    text-align: center;
+    bottom: 0px;
+    font-size: .7em;
+}
+.footer-text{
+    margin: 15px;
+}
+a{
+    text-decoration: none;
+    color: #e6e6e6;
+}
+a:hover{
+    font-weight: 500;
+    color: #FFF;
+}
+a:visited{
+    text-decoration: none;
+    color: #e6e6e6;
+}

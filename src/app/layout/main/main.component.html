@@ -1,0 +1,87 @@
+<div class="main">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12"><span class="title-1">API-DOCS</span></div>
+  </div>
+  <div class="row">
+      <div class="col-lg-12">
+        <span class="info">
+        Welcome to API-DOCS. Documentation is available for {{docsCount}} projects the community has linked.
+        Begin your search for anything by typing one or more keywords below.
+        </span>
+      </div>
+  </div>  
+  <div class="row">
+      <div class="col-lg-12">
+        <div class="marginizer">
+        <div class="select">
+            <select [(ngModel)]="select1">
+              <option>.Net</option>            
+              <option>Java</option>
+            </select>
+          </div>
+          <div class="select">
+            <select [(ngModel)]="select2" *ngIf="select1 === '.Net'">
+              <option>.Net Framework</option>     
+              <option>.Net Core</option>
+            </select>
+          </div>        
+          <div class="select">              
+              <select [(ngModel)]="select3" *ngIf="select2 === '.Net Framework'">
+                <option>Any Version</option>            
+                <option>4.7.1</option>     
+                <option>4.7.2</option>     
+                <option>4.8.0</option>     
+              </select>
+              <select [(ngModel)]="select3" *ngIf="select2 === '.Net Core'">
+                  <option>Any Version</option>            
+                  <option>1.0</option>     
+                  <option>1.1</option>     
+                  <option>2.0</option>     
+                  <option>2.1</option>     
+                  <option>2.2</option>     
+                  <option>3.0</option>     
+                </select>              
+            </div>          
+        </div>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <input type="text" class="search-textbox" placeholder="Search Here"/>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-lg-12">
+        <div class="marginizer">
+        <span *ngIf="!results || results.length <= 0" class="info text-center">
+          No Results Found
+        </span>
+        <table class="results-table">
+          <thead>
+            <th>Name</th>
+            <th>Description</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <img src="..\..\..\assets\class-icon.png" class="img-ico" />
+                <span class="result-name">
+                  <a href="#">NewtonSoft.Json</a>
+                </span>
+              </td>
+              <td>
+                <span class="info">
+                  Popular high-performace JSON library for .NET and .Net Core
+                </span>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <span class="text-small result-name pull-right"><a href="#">More Results</a></span>
+          </tfoot>
+        </table>
+      </div>
+      </div>
+    </div>  
+</div>

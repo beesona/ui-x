@@ -1,0 +1,11 @@
+.main{
+    background-color: black;
+    max-width: 300px;
+}
+
+@media screen and (max-width: 900px) {
+    .main {
+       width: 80px;
+       overflow: hidden;
+    }
+}
