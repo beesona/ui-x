@@ -1,17 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 
 //model objects
 import { Library } from '../../models/library';
 import { Project } from '../../models/project';
 
+//TODO: this refactors out to a project search component
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+
 //services
 import { LibraryService } from '../../services/library.service';
-
-//TODO: this refactors out to a project search component
-import {
-  debounceTime, distinctUntilChanged, switchMap
-} from 'rxjs/operators';
 import { ProjectsService } from '../../services/projects.service';
 
 @Component({
@@ -28,6 +26,7 @@ export class MainComponent implements OnInit {
   select2: string = 'Any Library/Framework';
   select3: string = 'Any Version';
   libraries: Library[];
+  searchBoxValue: string = '';
 
   //TODO: this refactors out to a project search component
   private searchTerms = new Subject<string>();
@@ -41,8 +40,8 @@ export class MainComponent implements OnInit {
   ngOnInit() {
     this.getLibraries();
 
-    //TODO: this refactors out to a project search component    
     this.projects$ = this.searchTerms.pipe(
+
       // wait 300ms after each keystroke before considering the term
       debounceTime(300),
  
@@ -50,9 +49,9 @@ export class MainComponent implements OnInit {
       distinctUntilChanged(),
  
       // switch to new search observable each time the term changes
-      switchMap((term: string) => 
-        this._projSvc.searchProjects(term)
-      ),
+      switchMap(term => 
+        this._projSvc.searchProjects(term, this.select1)
+      )
     );
   }
 
@@ -61,7 +60,7 @@ export class MainComponent implements OnInit {
   }
 
   selectChange(){
-
+    this.search(this.searchBoxValue);
   }
 
   setUpSelections(libs: Library[]){

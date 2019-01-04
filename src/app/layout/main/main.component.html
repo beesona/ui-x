@@ -34,7 +34,7 @@
   </div>
   <div class="row">
     <div class="col-lg-12">
-      <input type="text" #searchBox class="search-textbox" id="search-box" placeholder="Search Here" (input)="search(searchBox.value)"/>
+      <input type="text" #searchBox class="search-textbox" id="search-box" [(ngModel)]="searchBoxValue" placeholder="Search Here" (input)="search(searchBox.value)"/>
     </div>
   </div>
   <div class="row">
@@ -43,7 +43,7 @@
         <span *ngIf="!projects$ || projects$.length <= 0" class="info text-center">
           No Results Found
         </span>
-        <table class="results-table"*ngIf="!projects$ || projects$.length > 0">
+        <table class="results-table">
           <thead>
             <th>Name</th>
             <th>Description</th>

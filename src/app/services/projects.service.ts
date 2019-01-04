@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 import { Project } from '../models/project';
 import { PROJECTS } from '../data/mock-data';
 
@@ -9,21 +11,29 @@ import { PROJECTS } from '../data/mock-data';
 })
 export class ProjectsService {
 
-  constructor() { }
+  private projectsUrl = 'api/projects';
+  constructor(private http: HttpClient) { }
 
-  searchProjects(term: string): Observable<Project[]> {
+  searchProjects(term: string, lang: string): Observable<Project[]> {
     if (!term.trim()) {
       // if not search term, return empty hero array.
       return of([]);
     }
-    return of(PROJECTS).pipe(
-      tap(_ => console.log(`found projects matching "${term}"`)),
+    return this.http.get<Project[]>(`${this.projectsUrl}/?name=${term}&langId=${lang}`).pipe(
+      tap(_ => console.log(`found heroes matching "${term}"`)),
       catchError(this.handleError<Project[]>('searchHeroes', []))
     );
+    /*
+    return this.http.get<Project[]>(this.projectsUrl)
+      .pipe(
+        tap(_ => console.log(`found projects matching "${term}"`)),
+        catchError(this.handleError<Project[]>('searchHeroes', []))
+      );
+      */
   }
 
   getProjects(): Observable<Project[]> {
-    return of(PROJECTS);
+    return this.http.get<Project[]>(this.projectsUrl);
   }
 
   private handleError<T> (operation = 'operation', result?: T) {
