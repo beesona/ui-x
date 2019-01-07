@@ -1,0 +1,24 @@
+<div class="main">
+  <div class="login-panel">
+    <h2>Log in</h2>
+    <hr />
+    <div class="text-center"><span class="validation-error">{{formValidationMessage}}</span></div>
+    <form>
+      <div class="form-group">
+        <label for="txtUserName">User Name/Email:</label>
+        <input #userName [(ngModel)]="inputUserName" type="txtUserName" name="txtUserName" class="form-control" id="txtUserName" placeholder="User Name/Email">
+        <span class="validation-error" *ngIf="userNameValidationMessage != ''">{{userNameValidationMessage}}</span>
+      </div>
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input #password type="password" [(ngModel)]="inputPassword" name="txtPassword" class="form-control" id="pwd" placeholder="Password">
+        <span class="validation-error" *ngIf="passwordValidationMessage != ''">{{passwordValidationMessage}}</span>
+      </div>
+      <a routerLink="/forgot">Forgot Username/Password</a>
+      <div class="checkbox">
+        <label><input type="checkbox"> Remember me</label>
+      </div>
+      <button (click)="login()" class="btn btn-default">Submit</button>
+    </form>
+  </div>
+</div>

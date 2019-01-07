@@ -27,10 +27,12 @@ export class MainComponent implements OnInit {
   select3: string = 'Any Version';
   libraries: Library[];
   searchBoxValue: string = '';
+  docsCount: number = 0;
 
   //TODO: this refactors out to a project search component
   private searchTerms = new Subject<string>();
   projects$: Observable<Project[]>;
+  docsCountSubscription: Subscription;
 
   projects: Project[];
   filteredProjects: Project[];
@@ -39,6 +41,9 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
     this.getLibraries();
+    this.docsCountSubscription = this._projSvc.getProjectCount().subscribe(x => {
+      this.docsCount = x;
+    });
 
     this.projects$ = this.searchTerms.pipe(
 

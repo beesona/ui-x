@@ -1,0 +1,15 @@
+<div class="main">
+  {{docId}}
+  <div *ngIf="project$ | async as prj">
+    <h2 class="title-1">
+      {{prj.name}}
+    </h2>
+    <div *ngIf="!prj.id || prj.id <= 0">
+        <div class="warning">
+          <h2 class="text-center title-1">Documentation not found</h2>
+          <span>Whoops, this is embarassing. We couldn't find the documentation you are looking for.</span><br /><hr>
+          <button (click)="goBack()" class="btn btn-sm btn-primary btn-goback">Go Back</button>
+        </div>
+      </div>
+  </div>
+</div>

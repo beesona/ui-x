@@ -13,6 +13,10 @@ import { HeaderComponent } from './layout/header/header.component';
 import { NavLeftComponent } from './layout/nav-left/nav-left.component';
 import { MainComponent } from './layout/main/main.component';
 import { FooterComponent } from './layout/footer/footer.component';
+import { CreateComponent } from './create/create.component';
+import { DocDetailComponent } from './doc-detail/doc-detail.component';
+import { LoginComponent } from './login/login.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,11 @@ import { FooterComponent } from './layout/footer/footer.component';
     HeaderComponent,
     NavLeftComponent,
     MainComponent,
-    FooterComponent
+    FooterComponent,
+    CreateComponent,
+    DocDetailComponent,
+    LoginComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

@@ -7,12 +7,37 @@ import { Injectable } from '@angular/core';
 })
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
+    const users = [
+      {
+      userName: 'adam',
+      email: 'adam@vertical-software.com',
+      org: 'vertical-software',
+      password: 'password'
+      },
+      {
+        userName: 'dan',
+        email: 'dan@vertical-software.com',
+        org: 'vertical-software',
+        password: 'password'
+      },
+      {
+        userName: 'guest',
+        email: 'guest@gmail.com',
+        password: 'guest'
+      },
+      {
+        userName: 'jamesnk',
+        email: 'jamesnk@newtonsoft.com',
+        org: 'NewtonSoft',
+        password: 'password'
+      }
+    ];
     const projects = [
       { id: 1,
         name: 'Newtonsoft for .Net',
         author: 'Microsoft',
-        description: 'Popular high-performace JSON library for .NET and .Net Core.',
-        version: '1.0',
+        description: 'Popular high-performace JSON library for .NET.',
+        version: '12.0.1',
         createDate: new Date('2011/04/13'),
         icon: 'class-lib',
         langId: ['.Net'],
@@ -22,7 +47,7 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 2,
         name: 'Newtonsoft for .Net Core',
         author: 'Microsoft',
-        description: 'Popular high-performace JSON library for .NET and .Net Core.',
+        description: 'Popular high-performace JSON library for .Net Core.',
         version: '1.0',
         createDate: new Date('2011/04/13'),
         icon: 'class-lib',
@@ -31,6 +56,7 @@ export class InMemoryDataService implements InMemoryDbService {
         typeIdCollection: ['4.6.0', '4.6.1', '4.6.2', '1.0', '1.1', '1.2', '2.0', '2.1']
       }      
     ];
+    const projectsCount = projects.length;
     const libraries = [
       { id: 1, name: '.Net', definition: '.Net Framework', version: '4.6.0' },
       { id: 2, name: '.Net', definition: '.Net Framework', version: '4.6.1' },
@@ -53,14 +79,14 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 19, name: 'Java', definition: 'SE', version: '10' },
       { id: 20, name: 'Java', definition: 'SE', version: '11' }
     ];
-    return {projects, libraries};
+    return {users, projects, libraries, projectsCount};
   }
 
-  // Overrides the genId method to ensure that a hero always has an id.
-  // If the heroes array is empty,
+  // Overrides the genId method to ensure that a project always has an id.
+  // If the projects array is empty,
   // the method below returns the initial number (11).
-  // if the heroes array is not empty, the method below returns the highest
-  // hero id + 1.
+  // if the projects array is not empty, the method below returns the highest
+  // project id + 1.
   genId(projects: Project[]): number {
     return projects.length > 0 ? Math.max(...projects.map(prj => prj.id)) + 1 : 11;
   }

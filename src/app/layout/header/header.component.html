@@ -2,6 +2,10 @@
   <div class="logo">
     ///ApiDocs
   </div>
-  <div class="pull-right">
+  <div class="header-user">
+    <div *ngIf="loggedIn">
+      Hello, <a routerLink="/user/{{user.userName}}">{{user.userName}}</a> <button class="btn-logout btn btn-sm btn-default" (click)="signout()">Sign Out</button>
+    </div>
+    <div *ngIf="!loggedIn"><button routerLink="/login" class="btn btn-sm btn-default">Log In</button></div>
   </div>
 </div>
