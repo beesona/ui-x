@@ -14,7 +14,13 @@ export class UserService {
   userSubject: BehaviorSubject<User>;
 
   constructor(private http: HttpClient) {
-    this.userSubject = new BehaviorSubject<User>(new User);
+    let localStorageUser: User;
+    if (localStorage.getItem('user') !== undefined && localStorage.getItem('user') !== null){
+      localStorageUser = JSON.parse(localStorage.getItem('user'));
+      this.userSubject = new BehaviorSubject<User>(localStorageUser);
+    }else{
+      this.userSubject = new BehaviorSubject<User>(new User);
+    }
     this.user = this.userSubject.asObservable();
   }
 
@@ -28,6 +34,7 @@ export class UserService {
     return this.http.get<User[]>(`${this.userUrl}/?${type}=${userName}&password=${password}`).pipe(
       map (user => { 
         this.userSubject.next(user[0]);
+        localStorage.setItem('user', JSON.stringify(user[0]));
         return user[0];
       }),
       tap(_ => console.log(`found user matching "${userName}"`))
@@ -40,5 +47,6 @@ export class UserService {
 
   logOut(){
     this.userSubject.next(new User);
+    localStorage.removeItem('user');
   }
 }
