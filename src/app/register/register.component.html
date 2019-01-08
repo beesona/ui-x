@@ -1,0 +1,33 @@
+<div class="main">
+    <div class="register-panel">
+      <h2>Create A New Account</h2>
+      <hr />
+      <div class="text-center"><span class="validation-error">{{formValidationMessage}}</span></div>
+      <form>
+        <div class="form-group">
+            <label for="txtEmail">Email Address:</label>
+            <input #txtEmail [(ngModel)]="inputEmail" type="txtEmail" name="txtEmail" class="form-control" id="txtEmail" placeholder="Email">
+            <span class="validation-error" *ngIf="emailValidationMessage != ''">{{emailValidationMessage}}</span>
+          </div>        
+        <div class="form-group">
+          <label for="txtUserName">User Name</label>
+          <input #userName [(ngModel)]="inputUserName" type="txtUserName" name="txtUserName" class="form-control" id="txtUserName" placeholder="User Name">
+          <span class="validation-error" *ngIf="userNameValidationMessage != ''">{{userNameValidationMessage}}</span>
+        </div>
+        <div class="form-group">
+          <label for="pwd">Password:</label>
+          <input #password type="password" [(ngModel)]="inputPassword" name="txtPassword" class="form-control" id="pwd" placeholder="Password">
+          <span class="validation-error" *ngIf="passwordValidationMessage != ''">{{passwordValidationMessage}}</span>
+        </div>
+        <div class="form-group">
+          <label for="txtRePassword">Re-Enter Password:</label>
+          <input #password type="password" [(ngModel)]="inputRePassword" name="txtRePassword" class="form-control" id="inputRePassword" placeholder="Re-Enter Password">
+          <span class="validation-error" *ngIf="repasswordValidationMessage != ''">{{repasswordValidationMessage}}</span>
+        </div>
+            <div class="float-right">
+              <button (click)="login()" class="btn btn-success">Register</button>
+              <button (click)="goBack()" class="btn btn-error">Cancel</button>
+            </div>
+      </form>
+    </div>
+  </div>

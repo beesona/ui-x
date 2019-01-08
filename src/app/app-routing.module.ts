@@ -5,10 +5,12 @@ import { DocDetailComponent } from './doc-detail/doc-detail.component';
 import { CreateComponent } from './create/create.component';
 import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'user/:userName', component: UserComponent },
   { path: 'doc/id/:docId', component: DocDetailComponent },
   { path: 'doc/:docName', component: DocDetailComponent },

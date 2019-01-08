@@ -14,6 +14,7 @@
         <input #password type="password" [(ngModel)]="inputPassword" name="txtPassword" class="form-control" id="pwd" placeholder="Password">
         <span class="validation-error" *ngIf="passwordValidationMessage != ''">{{passwordValidationMessage}}</span>
       </div>
+      <a routerLink="/register">Register</a><br>
       <a routerLink="/forgot">Forgot Username/Password</a>
       <div class="checkbox">
         <label><input type="checkbox"> Remember me</label>
