@@ -6,12 +6,12 @@
       <form>
         <div class="form-group">
             <label for="txtEmail">Email Address:</label>
-            <input #txtEmail [(ngModel)]="inputEmail" type="txtEmail" name="txtEmail" class="form-control" id="txtEmail" placeholder="Email">
+            <input #txtEmail [(ngModel)]="inputEmail" name="txtEmail" class="form-control" id="txtEmail" placeholder="Email">
             <span class="validation-error" *ngIf="emailValidationMessage != ''">{{emailValidationMessage}}</span>
           </div>        
-        <div class="form-group">
+        <div clasSs="form-group">
           <label for="txtUserName">User Name</label>
-          <input #userName [(ngModel)]="inputUserName" type="txtUserName" name="txtUserName" class="form-control" id="txtUserName" placeholder="User Name">
+          <input #userName [(ngModel)]="inputUserName" name="txtUserName" class="form-control" id="txtUserName" placeholder="User Name">
           <span class="validation-error" *ngIf="userNameValidationMessage != ''">{{userNameValidationMessage}}</span>
         </div>
         <div class="form-group">
@@ -24,10 +24,16 @@
           <input #password type="password" [(ngModel)]="inputRePassword" name="txtRePassword" class="form-control" id="inputRePassword" placeholder="Re-Enter Password">
           <span class="validation-error" *ngIf="repasswordValidationMessage != ''">{{repasswordValidationMessage}}</span>
         </div>
-            <div class="float-right">
-              <button (click)="login()" class="btn btn-success">Register</button>
-              <button (click)="goBack()" class="btn btn-error">Cancel</button>
-            </div>
+        <div class="form-group">
+          <label for="txtOrg">Organization (Optional):</label>
+          <input #password [(ngModel)]="inputOrganization" name="txtOrg" class="form-control" id="inputOrganization" placeholder="Organization">
+          <span class="validation-error" *ngIf="repasswordValidationMessage != ''">{{repasswordValidationMessage}}</span>
+        </div>        
+        <hr>
+        <div class="form-group">
+          <button (click)="register()" class="btn btn-success" style="width:100%;">Register</button>
+        </div>
+        <button (click)="goBack()" class="btn btn-error" style="width:100%;">Cancel</button>
       </form>
     </div>
   </div>

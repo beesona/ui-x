@@ -55,7 +55,7 @@ export class MainComponent implements OnInit {
  
       // switch to new search observable each time the term changes
       switchMap(term => 
-        this._projSvc.searchProjects(term, this.select1)
+        this._projSvc.searchProjectFromService(term)
       )
     );
   }

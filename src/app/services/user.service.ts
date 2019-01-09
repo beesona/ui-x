@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, Subject, BehaviorSubject } from 'rxjs';
+import { Observable, of, Subject, BehaviorSubject, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { User } from '../models/user';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { User, RegisterUser } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,7 @@ import { User } from '../models/user';
 export class UserService {
 
   userUrl: string = 'api/users';
+  userAuthSvcUrl: string = 'http://104.40.11.180:3000';
   user: Observable<User>;
   userSubject: BehaviorSubject<User>;
 
@@ -22,6 +23,75 @@ export class UserService {
       this.userSubject = new BehaviorSubject<User>(new User);
     }
     this.user = this.userSubject.asObservable();
+  }
+
+  createUser(newUser: object): Observable<RegisterUser>{
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+    
+    return this.http.post<RegisterUser>(`${this.userAuthSvcUrl}`, newUser, httpOptions).pipe(
+      map ((user: RegisterUser) => { 
+        //parse response
+        console.log(user);
+        this.userSubject.next(user);
+        localStorage.setItem('user', JSON.stringify(user));
+        return user;
+      }),
+      tap((user: RegisterUser) => console.log(`Created User: "${user.userName}"`)),
+      //catchError(this.handeCreateError())
+      );
+  }
+
+  private handeCreateError<RegisterUser>(){
+    return (error: any): Observable<RegisterUser> => {
+      let usr: RegisterUser;
+      return of(usr);
+    }
+  }
+
+  private handleError<T> (operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+ 
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+ 
+      // TODO: better job of transforming error for user consumption
+      console.log(`${operation} failed: ${error.message}`);
+ 
+      // Let the app keep running by returning an empty result.
+      if (operation === 'createUser'){
+        let usr: RegisterUser = new RegisterUser;
+        return of(result);  
+      }
+      return of(result as T);
+    };
+  }
+
+  getUserFromService(userName: string, password: string): Observable<User>{
+    
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+
+    if (userName != '' && password != ''){
+      return this.http.post<User>(`${this.userAuthSvcUrl}`, {logemail:userName, logpassword:password}).pipe(
+        map (user => { 
+          this.userSubject.next(user);
+          localStorage.setItem('user', JSON.stringify(user));
+          return user;
+        }),
+        tap(_ => console.log(`found user matching "${userName}"`))
+        );
+      }else{
+        this.userSubject.next(new User);
+        return of(new User);
+      }
   }
 
   getUser(userName: string, password: string): Observable<User>{

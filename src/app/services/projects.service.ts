@@ -12,8 +12,20 @@ import { PROJECTS } from '../data/mock-data';
 export class ProjectsService {
 
   private projectsUrl = 'api/projects';
+  private projectSvcUrl: string = 'http://104.40.11.180:3000/project';
   private projectsCountUrl = 'api/projectsCount';
   constructor(private http: HttpClient) { }
+
+  searchProjectFromService(term: string): Observable<Project[]> {
+    if (!term.trim()) {
+      // if not search term, return empty hero array.
+      return of([]);
+    }
+    return this.http.get<Project[]>(`${this.projectSvcUrl}/${term}`).pipe(
+      tap(_ => console.log(`found projects matching "${term}"`)),
+      catchError(this.handleError<Project[]>('searchProjectFromService', []))
+    );
+  }
 
   getProject(projId: string) : Observable<Project>{
     if (projId && +projId > -1){

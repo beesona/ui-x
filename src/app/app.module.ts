@@ -38,9 +38,9 @@ import { RegisterComponent } from './register/register.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    )    
+    //HttpClientInMemoryWebApiModule.forRoot(
+    //  InMemoryDataService, { dataEncapsulation: false }
+    //)    
   ],
   providers: [],
   bootstrap: [AppComponent]

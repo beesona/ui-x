@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user';
 import { Observable, Subscription } from '../../../node_modules/rxjs';
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
   userSubscription: Subscription;
   user: User;
 
-  constructor(private _userSvc: UserService, private router: Router) { }
+  constructor(private userSvc: UserService, private router: Router, private location: Location) { }
 
   ngOnInit() {
   }
@@ -32,10 +33,18 @@ export class LoginComponent implements OnInit {
     }else if (this.inputPassword === ''){
       this.passwordValidationMessage = 'Invalid Password';
     }else{
-      this.userSubscription = this._userSvc.getUser(this.inputUserName, this.inputPassword).subscribe(user => {
+
+      this.userSubscription = this.userSvc.getUserFromService(this.inputUserName, this.inputPassword).subscribe(user => {
+        console.log(user);
+      })
+
+      this.userSubscription = this.userSvc.getUser(this.inputUserName, this.inputPassword).subscribe(user => {
         this.user = user;
         this.router.navigate(['/']);
       });
     }
+  }
+  goBack(){
+    this.location.back();
   }
 }
