@@ -64,7 +64,11 @@ export class ProjectsService {
   }
 
   getProjectCount(): Observable<number> {
-    return this.http.get<number>(this.projectsCountUrl);
+    return this.http.get<object>(this.projectSvcUrl + '/count').pipe(
+      map(val => {
+        return val['count']
+      })
+    );
   }
 
   private handleError<T> (operation = 'operation', result?: T) {
