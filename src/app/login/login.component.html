@@ -5,7 +5,7 @@
     <div class="text-center"><span class="validation-error">{{formValidationMessage}}</span></div>
     <form>
       <div class="form-group">
-        <label for="txtUserName">User Name/Email:</label>
+        <label for="txtUserName">Email:</label>
         <input #userName [(ngModel)]="inputUserName" type="txtUserName" name="txtUserName" class="form-control" id="txtUserName" placeholder="User Name/Email">
         <span class="validation-error" *ngIf="userNameValidationMessage != ''">{{userNameValidationMessage}}</span>
       </div>

@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { User } from '../models/user';
 import { UserService } from '../services/user.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +12,7 @@ import { Subscription } from 'rxjs';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private userSvc: UserService, private location: Location) { }
+  constructor(private userSvc: UserService, private location: Location, private router: Router) { }
 
   inputEmail: string = '';
   inputUserName: string = '';
@@ -19,6 +20,13 @@ export class RegisterComponent implements OnInit {
   inputRePassword: string = '';
   inputOrganization: string = '';
   newUserSubscription: Subscription;
+
+  formValidationMessage: string;
+  emailValidationMessage: string;
+  userNameValidationMessage: string;
+  passwordValidationMessage: string;
+  repasswordValidationMessage: string;
+  organizationValidationMessage: string;
 
   ngOnInit() {
   }
@@ -37,7 +45,7 @@ export class RegisterComponent implements OnInit {
       }
       //send user create
       this.newUserSubscription = this.userSvc.createUser(newUser).subscribe(user => {
-        console.log(user);
+        this.router.navigate(['/']);
       })
     }
   }

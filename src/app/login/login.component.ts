@@ -35,13 +35,9 @@ export class LoginComponent implements OnInit {
     }else{
 
       this.userSubscription = this.userSvc.getUserFromService(this.inputUserName, this.inputPassword).subscribe(user => {
-        console.log(user);
-      })
-
-      this.userSubscription = this.userSvc.getUser(this.inputUserName, this.inputPassword).subscribe(user => {
         this.user = user;
         this.router.navigate(['/']);
-      });
+      })
     }
   }
   goBack(){
